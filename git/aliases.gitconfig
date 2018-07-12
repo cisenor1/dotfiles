@@ -1,0 +1,24 @@
+[alias]
+        co = checkout
+        promote = !$ZSH/bin/git-promote
+        wtf     = !$ZSH/bin/git-wtf
+        rank-contributors = !$ZSH/bin/git-rank-contributors
+        count   = !git shortlog -sn
+        cob = checkout -b
+        st = status
+        br = branch -v
+        p = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        continue = rebase --continue
+        abort = rebase --abort
+        rom = rebase origin/master
+        cleanup-merged = !git checkout master && git branch --merged master | grep -v "master" | xargs -n 1 git branch -d
+        fixhead = commit --fixup=HEAD
+        rmis = rebase -i master --autosquash
+        fap = !echo "fetching all and pruning..." && git fetch --all --prune
+        mum = !echo "merging local master with upstream master..." && git merge upstream/master
+        updateall = !echo "Switching to master..." && git co master && git fap && \
+        git mum && echo "pushing local master to origin..." \
+        && git push origin master && echo "switching back to original branch... " && git co -
+        skip = rebase --skip
+        ria = rebase -i --autosquash
+        com = checkout master

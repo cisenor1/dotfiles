@@ -1,0 +1,2 @@
+set echo OFF
+git add . && git commit

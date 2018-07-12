@@ -1,4 +1,12 @@
-# jldeen does dotfiles - forked from holman's repo
+## More Dots Now
+
+## Git
+Add the following to your ~/.gitconfig file. 
+```
+[include]
+  path = ~/.dotfiles/git/aliases.gitconfig
+```
+
 
 ### macOS Configuration
 Run the following to configure macOS from scratch...
@@ -9,7 +17,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac/conf
 ### WSL Configuration
 Run the following to configure WSL from scratch...
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl/configure.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl-dev/configure.sh)"
 ```
 
 ## install
