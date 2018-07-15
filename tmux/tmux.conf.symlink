@@ -13,7 +13,7 @@ bind-key r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 # bind-key C-] last-window
 
 set -g default-terminal "xterm-256color"
-set -g default-command /usr/local/bin/zsh
+set -g default-command zsh
 set-option -g history-limit 20000
 
 # use vi style keybindings
@@ -45,7 +45,7 @@ set -g mouse on
 
 # Easy-to-remember split pane commands
 bind \ split-window -h -c '#{pane_current_path}' # vertical pane
-bind - split-window -v -c '#{pane_current_path}' # horizontal pane
+bind - split-window -v -c ' #{pane_current_path}' # horizontal pane
 unbind '"'
 unbind %
 
@@ -68,7 +68,7 @@ set -g @tasks_icon_outstanding '+ '
 # set-option -g status on
 set-option -g set-titles on
 set -g status-interval 1
-set-option -g update-environment "RUBY_VERSION SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
+set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 
 set -g status-position bottom
@@ -93,27 +93,27 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
 
 
 
-# Plugins
-# List of plugins
- set -g @tpm_plugins '          \
-   tmux-plugins/tpm             \
-   chriszarate/tmux-tasks       \
-   soyuka/tmux-current-pane-hostname     \
-   christoomey/vim-tmux-navigator       \
-'
+# # Plugins
+# # List of plugins
+#  set -g @tpm_plugins '          \
+#    tmux-plugins/tpm             \
+#    chriszarate/tmux-tasks       \
+#    soyuka/tmux-current-pane-hostname     \
+#    christoomey/vim-tmux-navigator       \
+# '
 
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
+# # Other examples:
+# # set -g @plugin 'github_username/plugin_name'
+# # set -g @plugin 'git@github.com/user/plugin'
+# # set -g @plugin 'git@bitbucket.com/user/plugin'
 
 
-set -g @plugin 'tmux-plugins/tmux-sensible' # recommened tmux defaults
-set -g @plugin 'tmux-plugins/tmux-yank' # allows copying to system vie tmux
+# set -g @plugin 'tmux-plugins/tmux-sensible' # recommened tmux defaults
+# set -g @plugin 'tmux-plugins/tmux-yank' # allows copying to system vie tmux
 
-set -g mouse-select-window on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
+# set -g mouse-select-window on
+# set -g mouse-select-pane on
+# set -g mouse-resize-pane on
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+# # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# run '~/.tmux/plugins/tpm/tpm'
