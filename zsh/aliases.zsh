@@ -17,6 +17,7 @@ alias cls="clear"
 alias justart="tmuxinator start juulio"
 alias justop="tmuxinator stop juulio"
 alias rmrf="rm -rf"
+alias ainstall="sudo apt-get install"
 
 function list_all() {
     emulate -L zsh

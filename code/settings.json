@@ -51,5 +51,8 @@
             "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
         ],
         "workbench.activityBar.visible": true,
-        "workbench.sideBar.location": "left"
+        "workbench.sideBar.location": "left",
+        "gitlens.advanced.messages": {
+            "suppressShowKeyBindingsNotice": true
+        }
     }
