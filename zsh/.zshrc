@@ -63,3 +63,5 @@ export PATH=$PATH:~/bin
 # startup
 echo Running startup...
 source $DOTFILES/startup.zsh
+
+eval "$(rbenv init -)"
