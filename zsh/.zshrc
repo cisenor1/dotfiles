@@ -29,12 +29,12 @@ echo Configuring syntax highlighting...
 source $DOTFILES/syntax-highlighting.zsh
 
 echo Configuring chruby...
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
 
 # User configuration
 echo Configuring user config...
-source $DOTFILES/config.zsh
+# source $DOTFILES/config.zsh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
