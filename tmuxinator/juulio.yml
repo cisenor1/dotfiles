@@ -46,7 +46,7 @@ windows:
   - editor:
       layout: f98d,230x59,0,0[230x40,0,0,0,230x18,0,41,4]
       panes:
-        - vim
+        - #vim
         - #empty
   - server: be rails s
   - webpack: bin/webpack-dev-server
