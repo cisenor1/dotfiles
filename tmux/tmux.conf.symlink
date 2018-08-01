@@ -1,4 +1,4 @@
-# remap prefix to Control + a
+# remap prefix to `
 set -g prefix `
 unbind C-b
 
@@ -6,7 +6,7 @@ unbind C-b
 source ~/.dotfiles/tmux/bindings.tmux
 
 # force a reload of the config file
-bind-key r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+bind-key r source-file ~/.tmux.conf \;  display-message "tmux.conf reloaded."
 
 # TODO: This shadows the default paste-buffer binding; should fix that.
 # bind-key ] send-prefix
@@ -64,8 +64,12 @@ set -g @tasks_format_end '#[fg=white,bg=default]'
 set -g @tasks_icon_urgent '⧗ '
 set -g @tasks_icon_outstanding '+ '
 
+# Clipboard
+set -g set-clipboard on
+
 # Status bar ------------------------------------------------------------- 
 # set-option -g status on
+set-option -g default-command "reattach-to-user-namespace -l zsh"
 set-option -g set-titles on
 set -g status-interval 1
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
@@ -92,6 +96,7 @@ setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 
+source ~/.dotfiles/tmux/plugins.tmux
 
 # # Plugins
 # # List of plugins

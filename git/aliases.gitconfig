@@ -22,3 +22,5 @@
         skip = rebase --skip
         ria = rebase -i --autosquash
         com = checkout master
+        quickfix = !git add . && git commit --fixup=HEAD
+	
