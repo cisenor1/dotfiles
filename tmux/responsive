@@ -10,8 +10,8 @@ LARGE=125
 X_LARGE=150
 
 if [ "$WIDTH" -gt "$X_LARGE" ]; then
-  MPD="#[fg=colour81]♪ #(~/bin/now_playing.sh)"
-  BATTERY="#(~/bin/battery.sh)"
+  MPD="#[fg=colour81] #(~/.tmux/bin/spotify_info)"
+  BATTERY="#(~/.tmux/bin/battery.sh)"
   date_colour='colour41'
 fi
 

@@ -18,6 +18,31 @@ alias justart="tmuxinator start juulio"
 alias justop="tmuxinator stop juulio"
 alias rmrf="rm -rf"
 alias ainstall="sudo apt-get install"
+alias mit="be rails db:migrate RAILS_ENV=test"
+alias mid="be rails db:migrate"
+alias dbreset="be rails db:reset"
+alias testdbreset="be rails db:reset RAILS_ENV=test"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+function chromego() {
+    echo loading chrome with $1
+    chrome $1 &
+}
+
+function fixup() {
+    if [ -z "$1" ] 
+    then 
+        echo "1 argument required, $# provided"
+    else
+        echo Fixuping to $1
+        git commit --fixup=$1
+    fi
+}
 
 function list_all() {
     emulate -L zsh
