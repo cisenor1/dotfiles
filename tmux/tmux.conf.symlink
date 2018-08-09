@@ -72,21 +72,22 @@ set -g set-clipboard on
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 set-option -g set-titles on
 set -g status-interval 1
+set -g status-justify centre  
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 
 set -g status-position bottom
-set -g status-bg colour237
+set -g status-bg colour235
 set -g status-fg colour137
 set -g status-attr 'none'
-set -g status-left '#[fg=colour197] #[bg=colour12] #()'
-set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #H'
+set -g status-left ' #(~/.tmux/bin/internet_info.sh)  #[fg=colour197] #[bg=colour12]'
+set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #(tmux-cpu --no-color) #H'
 set -g status-right-length 100
 set -g status-left-length 80
 
 set-window-option -g aggressive-resize
-setw -g window-status-current-fg colour170
-setw -g window-status-current-bg colour239
+setw -g window-status-current-fg colour170 # Active tab text
+setw -g window-status-current-bg colour239 # Active tab background
 setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
@@ -98,27 +99,5 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
 
 source ~/.dotfiles/tmux/plugins.tmux
 
-# # Plugins
-# # List of plugins
-#  set -g @tpm_plugins '          \
-#    tmux-plugins/tpm             \
-#    chriszarate/tmux-tasks       \
-#    soyuka/tmux-current-pane-hostname     \
-#    christoomey/vim-tmux-navigator       \
-# '
-
-# # Other examples:
-# # set -g @plugin 'github_username/plugin_name'
-# # set -g @plugin 'git@github.com/user/plugin'
-# # set -g @plugin 'git@bitbucket.com/user/plugin'
-
-
-# set -g @plugin 'tmux-plugins/tmux-sensible' # recommened tmux defaults
-# set -g @plugin 'tmux-plugins/tmux-yank' # allows copying to system vie tmux
-
-# set -g mouse-select-window on
-# set -g mouse-select-pane on
-# set -g mouse-resize-pane on
-
 # # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-# run '~/.tmux/plugins/tpm/tpm'
+run '~/.tmux/plugins/tpm/tpm'
