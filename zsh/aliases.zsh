@@ -24,6 +24,16 @@ alias dbreset="be rails db:reset"
 alias testdbreset="be rails db:reset RAILS_ENV=test"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+function prspec() {
+    echo Creating...
+    bundle exec rake parallel:create > /dev/null 2>&1
+    echo Preparing...
+    bundle exec rake parallel:prepare > /dev/null 2>&1
+    echo Running...
+    REGEX='spec/(?!features)'
+    bundle exec parallel_rspec spec -n 4 -p $REGEX
+}
+
 die () {
     echo >&2 "$@"
     exit 1
