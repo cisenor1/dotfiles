@@ -1,1 +1,1 @@
-# cls
+source ~/.juul/aws-environment.sh
