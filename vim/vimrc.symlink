@@ -14,8 +14,26 @@ Plugin 'nightsense/seabird'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'gevann/vim-rspec-simple'
+Plugin 'janko-m/vim-test'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'jgdavey/tslime.vim'
 call vundle#end()            " required
 
+let mapleader = ","
+map <leader>x :bnext!<cr>
+map <leader>X :bprev!<cr>
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>t :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+autocmd filetype ruby :set ts=2 | :set sw=2
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let test#strategy = "vimux"
+let g:VimuxUseNearest = 1
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -32,7 +50,7 @@ syntax on
 " End theme
 
 " Airline
-let g:airline_theme='bubblegum'
+" let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -43,19 +61,86 @@ set laststatus=2
 
 " Set line number
 set number
+" Fzy
+function! FzyCommand(choice_command, vim_command)
+	try
+		let output = system(a:choice_command . " | fzy ")
+	catch /Vim:Interrupt/
+		" Swallow errors from ^C, allow redraw! below
+	endtry
+	redraw!
+	if v:shell_error == 0 && !empty(output)
+		exec a:vim_command . ' ' . output
+	endif
+endfunction
+nnoremap <leader>e :call FzyCommand("find . -type f",":e")<cr>
+nnoremap <leader>v :call FzyCommand("find . -type f",":vs")<cr>
+nnoremap <leader>s :call FzyCommand("find . -type f",":sp")<cr>
+
+" from Hawth
+if has("autocmd")
+	" Syntax of these languages is fussy over tabs Vs spaces
+	autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType sass setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType haml setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType elixir setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+
+	" File types
+	au BufRead,BufNewFile {*.txt}                              set ft=txt
+	au BufRead,BufNewFile {*.rake,*.ruby,config.ru}            set ft=ruby
+	au BufRead,BufNewFile {Gemfile,Rakefile,Capfile,Guardfile} set ft=ruby
+	au BufRead,BufNewFile {*.rss,*.atom}                       set ft=xml
+	au BufRead,BufNewFile *.json                               set ft=json
+	au BufRead,BufNewFile {*.md,*.mkd,*.markdown}              set ft=markdown
+	au BufRead,BufNewFile {COMMIT_EDITMSG}                     set ft=gitcommit
+	au BufRead,BufNewFile *mutt-*                              set ft=mail formatoptions=aw
+	au BufRead,BufNewFile svn-commit.*                         set ft=svn
+	au BufRead,BufNewFile {*.vala,*.vapi}                      set ft=vala
+	au BufRead,BufNewFile pos.*.*                              set ft=basic
+	au BufRead,BufNewFile *.mirah                              set ft=mirah
+	au BufRead,BufNewFile *.rl                                 set ft=ragel cindent
+
+	au BufRead,BufNewFile *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+	au BufRead,BufNewFile *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+
+	au BufRead,BufNewFile *_spec.rb compiler rspec
+endif
 
 " Nerdtree Settings
 set mouse=a
-autocmd VimEnter * NERDTree | wincmd p
+" autocmd VimEnter * NERDTree | wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 set ttyfast
 set lazyredraw
-map tt :NERDTreeToggle<CR> "double click t button to toggle NerdTree
+map <leader>n :NERDTreeToggle<CR>
 map [] :TagbarToggle<CR> "click [] to toggle Tagbar
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" GENERAL BINDINGS
+:command CA %bd|e#
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = "\UE0B0"
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_section_b = ""

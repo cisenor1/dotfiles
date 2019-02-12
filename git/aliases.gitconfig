@@ -23,4 +23,4 @@
         ria = rebase -i --autosquash
         com = checkout master
         quickfix = !git add . && git commit --fixup=HEAD
-	
+        fapp = !git fap && echo "Pulling..." && git pull	

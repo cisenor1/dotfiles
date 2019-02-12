@@ -1,4 +1,3 @@
-
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'chriszarate/tmux-tasks'
 set -g @plugin 'soyuka/tmux-current-pane-hostname'

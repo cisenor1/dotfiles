@@ -10,8 +10,8 @@
         branch = auto
         ui = true
 [core]
-	excludesfile = /Users/toast/.gitignore
-        editor = code --wait
+	excludesfile = /Users/craig/.gitignore_global
+	editor = vim
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -35,8 +35,6 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-	template = /Users/toast/.stCommitMsg
 [color]
   ui = auto
 [color "branch"]
@@ -52,3 +50,10 @@
   added = yellow
   changed = green
   untracked = cyan
+[commit]
+	template = /Users/craig/.stCommitMsg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

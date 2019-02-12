@@ -28,19 +28,20 @@ else
     PUB_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 fi
 
-INTERNET=''
-#internet_info=`iwconfig eth0 | grep "Signal level" | awk '{print $2}' | sed 's/-//g'`
+INTERNET=
 
-# if [[ $internet_info -lt 20 ]]; then
-#     echo -n '#[fg=colour150]'
-# elif [[ $internet_info -lt 30 ]]; then
-#     echo -n '#[fg=colour155]'
-# elif [[ $internet_info -lt 40 ]]; then
-#     echo -n '#[fg=colour160]'
-# elif [[ $internet_info -lt 50 ]]; then
-#     echo -n '#[fg=colour163]'
-# else
-#     echo -n '#[fg=colour150]'
-# fi
+internet_info=`iwconfig eth0 | grep "Signal level" | awk '{print $2}' | sed 's/-//g'`
 
-echo -n "#[fg=colour150]$INTERNET  #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUB_IP"
+if [[ $internet_info -lt 20 ]]; then
+		echo -n '#[fg=colour150]'
+	elif [[ $internet_info -lt 30 ]]; then
+		echo -n '#[fg=colour155]'
+	elif [[ $internet_info -lt 40 ]]; then
+		echo -n '#[fg=colour160]'
+	elif [[ $internet_info -lt 50 ]]; then
+		echo -n '#[fg=colour163]'
+	else
+		echo -n '#[fg=colour150]'
+fi
+
+echo -n "#[fg=colour150]$INTERNET $DL Mbit/s $UP Mbit/s #[fg=colour197]$IP| $PUB_IP"

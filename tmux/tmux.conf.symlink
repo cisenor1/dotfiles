@@ -1,6 +1,7 @@
 # remap prefix to `
 set -g prefix `
 unbind C-b
+bind `     send-key ` # make it so you can still send tildes by double-tilde
 
 
 source ~/.dotfiles/tmux/bindings.tmux
@@ -79,9 +80,9 @@ set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CO
 set -g status-position bottom
 set -g status-bg colour235
 set -g status-fg colour137
-set -g status-attr 'none'
-set -g status-left ' #(~/.tmux/bin/internet_info.sh)  #[fg=colour197] #[bg=colour12]'
-set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #(tmux-cpu --no-color) #H'
+set -g status-attr 'bright'
+# set -g status-left ' #(~/.tmux/bin/internet_info.sh)  #[fg=colour197] #[bg=colour12]'
+set -g status-right '#(eval ~/.tmux/responsive.sh `tmux display -p "#{client_width}"`)#{battery_status_fg}#{battery_icon}#{battery_percentage}  #[fg=colour165]#{cpu_bg_color}#{cpu_percentage} #{cpu_icon}#[fg=colour165]#[bg=default]'
 set -g status-right-length 100
 set -g status-left-length 80
 
@@ -96,8 +97,17 @@ setw -g window-status-current-fg colour170
 setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-plugins/tmux-cpu'
 
-source ~/.dotfiles/tmux/plugins.tmux
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
 
-# # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'

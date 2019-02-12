@@ -42,7 +42,7 @@ zmodload zsh/zpty
 # Color to use when highlighting suggestion
 # Uses format of `region_highlight`
 # More info: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=2'
 
 # Prefix to use when saving original versions of bound widgets
 ZSH_AUTOSUGGEST_ORIGINAL_WIDGET_PREFIX=autosuggest-orig-
@@ -525,6 +525,7 @@ _zsh_autosuggest_strategy_default() {
 #
 # Note that this strategy won't work as expected with ZSH options that don't
 # preserve the history order such as `HIST_IGNORE_ALL_DUPS` or
+#
 # `HIST_EXPIRE_DUPS_FIRST`.
 
 _zsh_autosuggest_strategy_match_prev_cmd() {
@@ -695,5 +696,6 @@ _zsh_autosuggest_start() {
 	fi
 }
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=13'
 # Start the autosuggestion widgets on the next precmd
 add-zsh-hook precmd _zsh_autosuggest_start

@@ -6,6 +6,7 @@
 plugins=(sudo rails ruby vscode git history taskwarrior zsh-autosuggestions)
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
+  echo "OHTER HERE:"
   if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
     source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
   elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
