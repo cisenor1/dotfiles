@@ -14,20 +14,13 @@ alias be="bundle exec"
 alias yb="yarn build"
 alias c.="code ."
 alias cls="clear"
-alias justart="tmuxinator start juulio"
-alias justop="tmuxinator stop juulio"
 alias rmrf="rm -rf"
 alias ainstall="sudo apt-get install"
 alias mit="be rails db:migrate RAILS_ENV=test"
 alias mid="be rails db:migrate"
-alias migrate="mit && mid"
-alias dbreset="be rails db:reset"
-alias testdbreset="be rails db:reset RAILS_ENV=test"
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias mux="tmuxinator"
-alias clear_contentful="curl contentful:contentful@localhost:3000/api/contentful-cache-clear"
-alias fh="fixup head"
-alias fha="git add . && fh && git rmis"
+alias rub="be rubocop -A"
+
 
 function assh() {
   cd ~/repos/qa
@@ -123,6 +116,11 @@ function list_all() {
 	emulate -L zsh
 	clear
 	ls -a
+}
+
+function gfp {
+	br=$(git branch --show-current)
+	git push origin $br -f
 }
 
 function db_reset_all {

@@ -11,7 +11,8 @@
         ui = true
 [core]
 	excludesfile = /Users/craig/.gitignore_global
-	editor = vim
+	editor = nvim
+	autocrlf = input
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -28,13 +29,10 @@
         default = simple
 [user]
 	name = Craig
-	email = craig@stembolt.com
+	email = cisenor@clickmaint.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [color]
   ui = auto
 [color "branch"]
@@ -57,3 +55,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = store

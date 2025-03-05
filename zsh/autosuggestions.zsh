@@ -697,5 +697,6 @@ _zsh_autosuggest_start() {
 }
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=13'
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 # Start the autosuggestion widgets on the next precmd
 add-zsh-hook precmd _zsh_autosuggest_start

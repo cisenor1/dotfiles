@@ -13,7 +13,8 @@
         rom = rebase origin/master
         cleanup-merged = !git checkout master && git branch --merged master | grep -v "master" | xargs -n 1 git branch -d
         fixhead = commit --fixup=HEAD
-        rmis = rebase -i master --autosquash
+        rmis = rebase -i main --autosquash
+	rdis = rebase -i dev --autosquash
         fap = !echo "fetching all and pruning..." && git fetch --all --prune
         mum = !echo "merging local master with upstream master..." && git merge upstream/master
         updateall = !echo "Switching to master..." && git co master && git fap && \
@@ -21,6 +22,6 @@
         && git push origin master && echo "switching back to original branch... " && git co -
         skip = rebase --skip
         ria = rebase -i --autosquash
-        com = checkout master
+        com = checkout main
         quickfix = !git add . && git commit --fixup=HEAD
         fapp = !git fap && echo "Pulling..." && git pull	

@@ -70,7 +70,7 @@ set -g set-clipboard on
 
 # Status bar ------------------------------------------------------------- 
 # set-option -g status on
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+# set-option -g default-command "reattach-to-user-namespace -l zsh"
 set-option -g set-titles on
 set -g status-interval 1
 set -g status-justify centre  
